@@ -46,8 +46,12 @@ gr_dec_idx=profit_loss.index(gr_dec)
 #print(gr_inc_idx)
 
 #Print it all out
+print("'''text")
+print("Financial Analysis")
+print("----------------------------")
 print(f"Total Months: {tot_mon}")
 print(f"Total: ${net_tot}")
 print(f"Average Change: ${avg_pl}")
 print(f"Greatest Increase in Profits: {date_combined[gr_inc_idx]} (${profit_loss[gr_inc_idx]})")
 print(f"Greatest Decrease in Profits: {date_combined[gr_dec_idx]} (${profit_loss[gr_dec_idx]})")
+print("'''")
