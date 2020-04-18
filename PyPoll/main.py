@@ -4,6 +4,7 @@
 import csv
 import pathlib
 
+
 # Set path for locating csv file
 
 csv_loc = pathlib.Path('Resources/election_data.csv')
@@ -14,6 +15,7 @@ county=[]
 candidate =[]
 can_list = []
 winner = []
+winner_state = []
 # Open csv file and read
 with open(csv_loc) as csv_file:
     csv_data = csv.reader(csv_file)
@@ -28,8 +30,11 @@ with open(csv_loc) as csv_file:
 
 # Calculate total votes, complete list, other request, etc... 
 tot_votes_cast=len(voter_id)
-#print(tot_votes_cast)
-
+print("'''text")
+print("Election Results")
+print("-------------------------")
+print(f"Total Votes: {tot_votes_cast} ")
+print("-------------------------")
 #set command will make new list of all unique inputs
 can_list = set(candidate)
 # use sorted command to give consistent order to list
@@ -53,49 +58,30 @@ for votes in can_votes:
     can_ord_ind_v=can_votes.index(votes)
     can = can_ord[can_ord_ind_v]
     can_perc = round(((votes/tot_votes_cast)* 100), 2)
-    print(f'Candidate{can}: Recieved {can_perc}% of the vote with ({votes}) total votes')
-## End help from Hunter Carlisle.    
+    print(f'Candidate {can}: Recieved {can_perc}% of the vote with ({votes}) total votes')
+## End help from Hunter Carlisle.   
     if votes == max(can_votes):
         winner.append(f'Winner: {can}')
-
-
+print("-------------------------")
 print(winner)
+print("-------------------------")
 
-    #Original code below
-    # if can == str(can_ord[0]):
-    #     cand_1= cand_1 + 1
-    # elif can == str(can_ord[1]):
-    #     cand_2= cand_2 + 1
-    # elif can == str(can_ord[2]):
-    #     cand_3 = cand_3 + 1
-    # elif can == str(can_ord[3]):
-    #     cand_4 = cand_4 + 1
-#Use print to test results and total votes for each candidate
-# print(cand_1)
-# print(cand_2)
-# print(cand_3)
-# print(cand_4)
+# Create Output
+output_path = pathlib.Path('Analysis/Results.txt') 
 
-# #calculate the percentages
-# cand_1_per = round((cand_1/tot_votes_cast) * 100, 3)
-# cand_2_per = round((cand_2/tot_votes_cast) * 100, 3)
-# cand_3_per = round((cand_3/tot_votes_cast) * 100, 3)
-# cand_4_per = round((cand_4/tot_votes_cast) * 100, 3)
-# # print(cand_1_per)
-# # print(cand_2_per)
-# # print(cand_3_per)
-# # print(cand_4_per)
-# vot_dic = {}
-
-# # Print it all out
-# print("'''text")
-# print("Election Results")
-# print("----------------------------")
-# print(f"Total Votes: {tot_votes_cast}")
-# print("----------------------------")
-# print(f"{can_ord[0]}: {cand_1_per}% ({cand_1})")
-# print(f"{can_ord[1]}: {cand_2_per}% ({cand_2})")
-# print(f"{can_ord[2]}: {cand_3_per}% ({cand_3})")
-# print(f"{can_ord[3]}: {cand_4_per}% ({cand_4})")
-# print("----------------------------")
-# #print(f"Winner:  {}")
+# Write output
+with open(output_path, 'w') as output:
+    output.write("'''text \n")
+    output.write("Election Results \n")
+    output.write("------------------------- \n")
+    output.write(f"Total Votes: {tot_votes_cast}  \n")
+    output.write("------------------------- \n")
+    for votes in can_votes:
+        can_ord_ind_v=can_votes.index(votes)
+        can = can_ord[can_ord_ind_v]
+        can_perc = round(((votes/tot_votes_cast)* 100), 2)
+        output.write(f'Candidate {can}: Recieved {can_perc}% of the vote with ({votes}) total votes \n')
+    output.write("------------------------- \n")
+    output.write(f'{winner} \n')
+    output.write("------------------------- \n")
+    output.write("'''" )
