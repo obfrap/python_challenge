@@ -1,7 +1,7 @@
 #Import libraries to use
 import csv
 import pathlib
-import os
+
 
 #Set path for finding csv file
 
@@ -26,13 +26,16 @@ with open(csv_path) as csv_file:
         profit_loss.append(int(row[1]))
 
 
-#count total # of months and other values requested
+#count total # of months a
 tot_mon=len(date_combined)
 
+# Calculate overall profit loss, sum it all up
 net_tot=sum(profit_loss)
 
+# Calculate average change in profit/loss
 avg_pl=round((net_tot/tot_mon),2)
 
+#Calculate max/min
 gr_inc=int(max(profit_loss))
 gr_dec=int(min(profit_loss))
 
@@ -51,9 +54,10 @@ print(f"Greatest Increase in Profits: {date_combined[gr_inc_idx]} (${profit_loss
 print(f"Greatest Decrease in Profits: {date_combined[gr_dec_idx]} (${profit_loss[gr_dec_idx]})")
 print("'''")
 
-#Create Output
+#Create Output Path
 output_path = pathlib.Path('Analysis/Results.txt')
 
+#Write output to output path
 with open(output_path, 'w') as output:
     output.write("'''text \n")
     output.write("Financial Analysis \n")
