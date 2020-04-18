@@ -13,6 +13,7 @@ voter_id=[]
 county=[]
 candidate =[]
 can_list = []
+winner = []
 # Open csv file and read
 with open(csv_loc) as csv_file:
     csv_data = csv.reader(csv_file)
@@ -35,24 +36,30 @@ can_list = set(candidate)
 can_ord = sorted(can_list)
 ## Recieved help from Hunter Carlisle on code below starting at can_vots ie. can_tallies
 can_votes  = [0 for can in can_ord]  
-
+can_per = [0 for can in can_ord]
 # create loop to associate each candidate in list of candidates the index value my ordered candidate list
 # tally votes each candidate by index
 for can in candidate:
     can_ord_ind = can_ord.index(can)
     can_votes[can_ord_ind] += 1
-    ##Just for my own testing
+    #Just for my own testing below
     #can_votes[can_ord_ind] = can_votes[can_ord_ind] + 1
-winning_tally = max(can_votes)
-print(winning_tally)
 
+## End help on first loop.
+
+## Start help from Hunter Carlisle on second loop
 # create loop to print out results and determine winner
 for votes in can_votes:
     can_ord_ind_v=can_votes.index(votes)
     can = can_ord[can_ord_ind_v]
-    print(f'Candidate {can} recieved {votes} votes')
-    
-## End help from Hunter Carlisle.
+    can_perc = round(((votes/tot_votes_cast)* 100), 2)
+    print(f'Candidate{can}: Recieved {can_perc}% of the vote with ({votes}) total votes')
+## End help from Hunter Carlisle.    
+    if votes == max(can_votes):
+        winner.append(f'Winner: {can}')
+
+
+print(winner)
 
     #Original code below
     # if can == str(can_ord[0]):
