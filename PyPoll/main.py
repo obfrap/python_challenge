@@ -30,20 +30,65 @@ tot_votes_cast=len(voter_id)
 #print(tot_votes_cast)
 
 #set command will make new list of all unique inputs
-
 can_list = set(candidate)
-can_or = sorted(can_list)
-print(can_or)
-# def unique(sequence):
-#     seen = set(candidate)
-#     return [x for x in sequence if not (x in seen or seen.add(x))]
-#     print(x)
+# use sorted command to give consistent order to list
+can_ord = sorted(can_list)
+## Recieved help from Hunter Carlisle on code below starting at can_vots ie. can_tallies
+can_votes  = [0 for can in can_ord]  
 
-#can_list=set(candidate)
-#print(can_list)
-# candidate_1 = candidate[0]
-# print(candidate_1)
-# for row in candidate:
-#     if row != str(candidate_1)
-#     candidate_2 = row
-#     print(candidate_2)
+# create loop to associate each candidate in list of candidates the index value my ordered candidate list
+# tally votes each candidate by index
+for can in candidate:
+    can_ord_ind = can_ord.index(can)
+    can_votes[can_ord_ind] += 1
+    ##Just for my own testing
+    #can_votes[can_ord_ind] = can_votes[can_ord_ind] + 1
+winning_tally = max(can_votes)
+print(winning_tally)
+
+# create loop to print out results and determine winner
+for votes in can_votes:
+    can_ord_ind_v=can_votes.index(votes)
+    can = can_ord[can_ord_ind_v]
+    print(f'Candidate {can} recieved {votes} votes')
+    
+## End help from Hunter Carlisle.
+
+    #Original code below
+    # if can == str(can_ord[0]):
+    #     cand_1= cand_1 + 1
+    # elif can == str(can_ord[1]):
+    #     cand_2= cand_2 + 1
+    # elif can == str(can_ord[2]):
+    #     cand_3 = cand_3 + 1
+    # elif can == str(can_ord[3]):
+    #     cand_4 = cand_4 + 1
+#Use print to test results and total votes for each candidate
+# print(cand_1)
+# print(cand_2)
+# print(cand_3)
+# print(cand_4)
+
+# #calculate the percentages
+# cand_1_per = round((cand_1/tot_votes_cast) * 100, 3)
+# cand_2_per = round((cand_2/tot_votes_cast) * 100, 3)
+# cand_3_per = round((cand_3/tot_votes_cast) * 100, 3)
+# cand_4_per = round((cand_4/tot_votes_cast) * 100, 3)
+# # print(cand_1_per)
+# # print(cand_2_per)
+# # print(cand_3_per)
+# # print(cand_4_per)
+# vot_dic = {}
+
+# # Print it all out
+# print("'''text")
+# print("Election Results")
+# print("----------------------------")
+# print(f"Total Votes: {tot_votes_cast}")
+# print("----------------------------")
+# print(f"{can_ord[0]}: {cand_1_per}% ({cand_1})")
+# print(f"{can_ord[1]}: {cand_2_per}% ({cand_2})")
+# print(f"{can_ord[2]}: {cand_3_per}% ({cand_3})")
+# print(f"{can_ord[3]}: {cand_4_per}% ({cand_4})")
+# print("----------------------------")
+# #print(f"Winner:  {}")

@@ -1,1 +1,9 @@
-hello test
+can_tallies = [0 for can in can_ord]                        # NEW CODE: we want to create a list of all zeros for the starting counts, where can_tallies[n] is the vote count for can_ord[n]
+for can in candidate:                                       # YOUR CODE: looping through all of the candidate votes
+    can_ord_index = can_ord.index(can)                      # NEW CODE: we can use the `.index()` method to get the index of the current candidate in the sorted `can_ord` list
+    can_tallies[can_ord_index] += 1                         # NEW CODE: we can then use that index to increment the value for that candidate by one in the `can_tallies` list
+#Use print to test results
+for tally in can_tallies:                                   # NEW CODE: use another `for` loop to print the results
+    can_ord_index = can_tallies.index(tally)                # NEW CODE: we can use the `.index()` method to get the index of the current tally in the `can_tallies`` list
+    can = can_ord[can_ord_index]                            # NEW CODE: we can then use that index to grab the name of the candidate out of `can_ord`  
+    print(f'Candidate {can} received {tally} votes')        # NEW CODE: f-string can be used to construct the line we want to print
